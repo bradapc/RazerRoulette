@@ -43,7 +43,7 @@ public class ButtonScript : MonoBehaviour
             }
             else{
                 int currentRotation = (int)rouletteWheel.transform.rotation.eulerAngles.z;
-                if (currentRotation > generatedRotation - 15 || currentRotation < generatedRotation + 15) {
+                if (currentRotation > generatedRotation - 15 && currentRotation < generatedRotation + 15) {
                     motor.motorSpeed = 0;
                     rouletteWheelRB.motor = motor;
                     //passPlayerTurn is used to apply the change to player vs enemy (true for player)
