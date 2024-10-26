@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class WheelScript : MonoBehaviour
 {
+    public bool[] appleMap = {false, true, false, true, false, true, false, true, false, true, false, true};
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,7 +19,7 @@ public class WheelScript : MonoBehaviour
         if (playerTurn) {
             gameObject.GetComponent<PlayerScript>().handlePlayerTurn(wheelValue);
         } else {
-            //handleEnemyTurn(wheelValue);
+            gameObject.GetComponent<EnemyScript>().handleEnemyTurn(wheelValue);
         }
     }
 }

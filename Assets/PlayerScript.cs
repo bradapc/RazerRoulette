@@ -3,13 +3,13 @@ using TMPro;
 
 public class PlayerScript : MonoBehaviour
 {
+    bool[] appleMap;
     [SerializeField]private TMPro.TextMeshProUGUI livesText;
-    bool[] appleMap = {false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true};
     public int playerLives = 3;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+     appleMap = gameObject.GetComponent<WheelScript>().appleMap;   
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class PlayerScript : MonoBehaviour
 
     public void handlePlayerTurn(int wheelValue) {
         if (appleMap[wheelValue - 1]) {
-
+            Debug.Log("Player lives");
         } else {
             playerLives--;
             livesText.text = "Lives: " + playerLives;
