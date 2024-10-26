@@ -45,7 +45,7 @@ public class ButtonScript : MonoBehaviour
             }
             else{
                 int currentRotation = (int)rouletteWheel.transform.rotation.eulerAngles.z;
-                if (currentRotation > generatedRotation - 9 || currentRotation < generatedRotation + 9) {
+                if (currentRotation > generatedRotation - 15 || currentRotation < generatedRotation + 15) {
                     motor.motorSpeed = 0;
                     rouletteWheelRB.motor = motor;
                     //passPlayerTurn is used to apply the change to player vs enemy (true for player)
@@ -60,8 +60,8 @@ public class ButtonScript : MonoBehaviour
     public void doPlayerTurn() {
         isPlayerTurn = false;
         passPlayerTurn = true;
-        wheelValue = Random.Range(1, 20);
-        generatedRotation = wheelValue * 18;
+        wheelValue = Random.Range(1, 12);
+        generatedRotation = wheelValue* (360 / 12);
         countdownTime = Random.Range(1, 3);
         spinRandomTimer = countdownTime;
         spinnerActivated = true;

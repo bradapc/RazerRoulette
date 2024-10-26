@@ -22,7 +22,7 @@ public class EnemyScript : MonoBehaviour
             Debug.Log("Enemy Lives");
         } else {
             enemyLives--;
-            livesText.text = "Lives: " + enemyLives;
+            // livesText.text = "Lives: " + enemyLives;
         }
     }
 }
