@@ -18,45 +18,41 @@ public class ButtonScript : MonoBehaviour
     public float timeToSpin = 0;
     public int wheelvalue = 0;
     public int generatedRotation = 0;
+
+    public float countdownTime = 3f;
+    private float spinRandomTimer = 0f;
+    public bool spinnerActivated = false;
+
+    JointMotor2D motor;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rouletteWheelRB = rouletteWheel.GetComponent<HingeJoint2D>();
+        motor = rouletteWheelRB.motor;
     }
 
     // Update is called once per frame
     void Update()
     {
-        JointMotor2D motor = rouletteWheelRB.motor;
-        motor.motorSpeed = 0;
-        rouletteWheelRB.motor = motor;
-        timer += Time.deltaTime;
-        if(spinningRandom) {
-            if(timer < currentTime + timeToSpin) {
-                motor.motorSpeed = 400;
-                rouletteWheelRB.motor = motor;
-            } else {
-                motor.motorSpeed = 0;
-                rouletteWheelRB.motor = motor;
-                currentTime = 0;
-                randomTime = 0;
-                timeToSpin = 0;
-                timer = 0;
-                spinningRandom = false;
-                spinningReal = true;
-            }
-        }
-        if(spinningReal) {
+        if(spinnerActivated){
             motor.motorSpeed = 400;
             rouletteWheelRB.motor = motor;
-            int currentRotation = (int)rouletteWheel.transform.rotation.eulerAngles.z;
-            if (currentRotation > generatedRotation - 9 || currentRotation < generatedRotation + 9) {
-                motor.motorSpeed = 0;
-                rouletteWheelRB.motor = motor;
-                //passPlayerTurn is used to apply the change to player vs enemy (true for player)
-                logicHandler.GetComponent<WheelScript>().handleTurnEnd(wheelValue, passPlayerTurn);
-                passPlayerTurn = false;
-                spinningReal = false;
+            if(spinRandomTimer > 0){
+                spinRandomTimer -= Time.deltaTime;
+                spinRandomTimer = Mathf.Clamp(spinRandomTimer, 0, countdownTime);
+            }
+            else{
+                int currentRotation = (int)rouletteWheel.transform.rotation.eulerAngles.z;
+                if (currentRotation > generatedRotation - 9 || currentRotation < generatedRotation + 9) {
+                    motor.motorSpeed = 0;
+                    rouletteWheelRB.motor = motor;
+                    //passPlayerTurn is used to apply the change to player vs enemy (true for player)
+                    logicHandler.GetComponent<WheelScript>().handleTurnEnd(wheelValue, passPlayerTurn);
+                    passPlayerTurn = false;
+                    spinningReal = false;
+                }
             }
         }
     }
@@ -66,10 +62,9 @@ public class ButtonScript : MonoBehaviour
         passPlayerTurn = true;
         wheelValue = Random.Range(1, 20);
         generatedRotation = wheelValue * 18;
-        currentTime = timer;
-        randomTime = Random.Range(1, 3);
-        timeToSpin = currentTime + randomTime;
-        spinningRandom = true;
+        countdownTime = Random.Range(1, 3);
+        spinRandomTimer = countdownTime;
+        spinnerActivated = true;
     }
 
     public void doEnemyTurn() {
