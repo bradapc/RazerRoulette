@@ -248,6 +248,8 @@ MonoBehaviour:
   timeToSpin: 0
   wheelvalue: 0
   generatedRotation: 0
+  countdownTime: 3
+  spinnerActivated: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,7 +772,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2785366349977813741, guid: 422f4bf593e149b808a5179448e69f13, type: 3}
+  m_Sprite: {fileID: -6249173346592115443, guid: 5be4458b0720360e69184e7ac9eafb27, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -791,7 +793,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1121,6 +1123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyLives: 3
+  livesText: {fileID: 0}
 --- !u!114 &1812998960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1133,6 +1136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6380a8aeed21ab7ec97ae1c3d5fedbea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appleMap: 000100010001000100010001
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
