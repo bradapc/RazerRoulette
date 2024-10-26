@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class WheelScript : MonoBehaviour
 {
+    //HIT TRUE = LIVE, FALSE = LOSE A LIFE
     public bool[] appleMap = {false, true, false, true, false, true, false, true, false, true, false, true};
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

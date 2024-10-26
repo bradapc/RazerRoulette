@@ -20,6 +20,7 @@ public class ButtonScript : MonoBehaviour
     private float spinRandomTimer = 0f;
     public bool spinnerActivated = false;
     public bool delayFinished = true;
+    public bool spunForEnemy = false;
 
     JointMotor2D motor;
 
@@ -55,17 +56,50 @@ public class ButtonScript : MonoBehaviour
                     motor.motorSpeed = 0;
                     rouletteWheelRB.motor = motor;
                     spinnerActivated = false;
-                    logicHandler.GetComponent<WheelScript>().handleTurnEnd(wheelValue, turn);
-                    if (turn == "player") {
-                        turn = "enemy";
-                        delayFinished = false;
-                        spinRandomTimer = 3;
-                    } else {
-                        turn = "player";
-                    }
+                    logicHandler.GetComponent<WheelScript>().handleTurnEnd(wheelValue, getOutcomeTarget(wheelValue));
+                    handleNextTurn(wheelValue);
                 }
             }
         }
+    }
+
+    public bool getWheelValueOutcome(int wheelValue) {
+        return logicHandler.GetComponent<WheelScript>().appleMap[wheelValue - 1];
+    }
+
+    public void handleNextTurn(int wheelValue) {
+        if (turn == "player" && spunForEnemy && getWheelValueOutcome(wheelValue)) {
+            turn = "enemy";
+        } else if (turn == "player" && spunForEnemy && !getWheelValueOutcome(wheelValue)) {
+            turn = "player";
+        } else if (turn == "player" && getWheelValueOutcome(wheelValue)) {
+            turn = "player";
+        } else if (turn == "player" && !getWheelValueOutcome(wheelValue)) {
+            turn = "enemy";
+        } else if (turn == "enemy" && getWheelValueOutcome(wheelValue)) {
+            turn = "enemy";
+        } else if (turn == "enemy" && !getWheelValueOutcome(wheelValue)) {
+            turn = "player";
+        }
+        spunForEnemy = false;
+        if (turn == "enemy") {
+            delayFinished = false;
+            spinRandomTimer = 3;
+        }
+    }
+
+    public string getOutcomeTarget(int wheelValue) {
+        if (turn == "player" && spunForEnemy && getWheelValueOutcome(wheelValue)) {
+            return "enemy";
+        } else if (turn == "player" && spunForEnemy && !getWheelValueOutcome(wheelValue)) {
+            return "enemy";
+        } else if (turn == "player" && getWheelValueOutcome(wheelValue)) {
+            return "player";
+        } else if (turn == "player" && !getWheelValueOutcome(wheelValue)) {
+            return "player";
+        }
+        //add enemy
+        return "enemy";
     }
 
     public void doPlayerTurn() {
@@ -90,9 +124,27 @@ public class ButtonScript : MonoBehaviour
         }
     }
 
+    public void doEnemyTurnFromPlayer() {
+        if (turn == "player") {
+            wheelValue = Random.Range(1, 12);
+            generatedRotation = wheelValue* (360 / 12);
+            countdownTime = Random.Range(1, 3);
+            spinRandomTimer = countdownTime;
+            spinnerActivated = true;
+            spunForEnemy = true;
+        }
+    }
+    
+
     public void onClick() {
         if (turn == "player") {
             doPlayerTurn();
+        }
+    }
+
+    public void onClickEnemyHit() {
+        if (turn == "player") {
+            doEnemyTurnFromPlayer();
         }
     }
 }
