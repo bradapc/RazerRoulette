@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      roulette-wheel_0: -6249173346592115443
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
