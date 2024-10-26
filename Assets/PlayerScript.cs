@@ -27,6 +27,6 @@ public class PlayerScript : MonoBehaviour
             playerLives--;
             livesText.text = "Lives: " + playerLives;
         }
-        canvasObject.GetComponent<ButtonScript>().doEnemyTurn();
+        //canvasObject.GetComponent<ButtonScript>().doEnemyTurn();
     }
 }

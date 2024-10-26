@@ -20,6 +20,7 @@ public class ButtonScript : MonoBehaviour
     public float countdownTime = 3f;
     private float spinRandomTimer = 0f;
     public bool spinnerActivated = false;
+    public bool delayFinished = true;
 
     JointMotor2D motor;
 
@@ -34,6 +35,14 @@ public class ButtonScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!delayFinished) {
+            spinRandomTimer -= Time.deltaTime;
+            spinRandomTimer = Mathf.Clamp(spinRandomTimer, 0, 3);
+            if (spinRandomTimer <= 0) {
+                delayFinished = true;
+                doEnemyTurn();
+            }
+        }
         if(spinnerActivated){
             motor.motorSpeed = 400;
             rouletteWheelRB.motor = motor;
@@ -51,6 +60,8 @@ public class ButtonScript : MonoBehaviour
                     logicHandler.GetComponent<WheelScript>().handleTurnEnd(wheelValue, turn);
                     if (turn == "player") {
                         turn = "enemy";
+                        delayFinished = false;
+                        spinRandomTimer = 3;
                     } else {
                         turn = "player";
                         isPlayerTurn = true;
@@ -61,20 +72,26 @@ public class ButtonScript : MonoBehaviour
     }
 
     public void doPlayerTurn() {
-        isPlayerTurn = false;
-        wheelValue = Random.Range(1, 12);
-        generatedRotation = wheelValue* (360 / 12);
-        countdownTime = Random.Range(1, 3);
-        spinRandomTimer = countdownTime;
-        spinnerActivated = true;
+        if (turn == "player") {
+            isPlayerTurn = false;
+            wheelValue = Random.Range(1, 12);
+            generatedRotation = wheelValue* (360 / 12);
+            countdownTime = Random.Range(1, 3);
+            spinRandomTimer = countdownTime;
+            spinnerActivated = true;
+        }
     }
 
     public void doEnemyTurn() {
-        wheelValue = Random.Range(1, 12);
-        generatedRotation = wheelValue* (360 / 12);
-        countdownTime = Random.Range(1, 3);
-        spinRandomTimer = countdownTime;
-        spinnerActivated = true;
+        if (turn == "enemy") {
+            if (delayFinished) {
+                wheelValue = Random.Range(1, 12);
+                generatedRotation = wheelValue* (360 / 12);
+                countdownTime = Random.Range(1, 3);
+                spinRandomTimer = countdownTime;
+                spinnerActivated = true;
+            }
+        }
     }
 
     public void onClick() {
