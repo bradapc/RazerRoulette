@@ -21,8 +21,9 @@ public class EnemyScript : MonoBehaviour
         if (appleMap[wheelValue - 1]) {
             Debug.Log("Enemy Lives");
         } else {
+            Debug.Log("Enemy loses life");
             enemyLives--;
-            // livesText.text = "Lives: " + enemyLives;
+            livesText.text = "Lives: " + enemyLives;
         }
     }
 }

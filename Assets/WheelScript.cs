@@ -15,8 +15,8 @@ public class WheelScript : MonoBehaviour
         
     }
 
-    public void handleTurnEnd(int wheelValue, bool playerTurn) {
-        if (playerTurn) {
+    public void handleTurnEnd(int wheelValue, string turn) {
+        if (turn == "player") {
             gameObject.GetComponent<PlayerScript>().handlePlayerTurn(wheelValue);
         } else {
             gameObject.GetComponent<EnemyScript>().handleEnemyTurn(wheelValue);

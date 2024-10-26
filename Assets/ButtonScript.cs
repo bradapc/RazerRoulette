@@ -7,10 +7,8 @@ public class ButtonScript : MonoBehaviour
     public HingeJoint2D rouletteWheelRB;
     private float timer = 0.0f;
     public int wheelValue = 1;
-    public bool spinningRandom = false;
-    public bool spinningReal = false;
     public bool isPlayerTurn = true;
-    public bool passPlayerTurn = true;
+    public string turn = "player";
 
     //onClick parameters
     public float currentTime = 0;
@@ -49,9 +47,14 @@ public class ButtonScript : MonoBehaviour
                     motor.motorSpeed = 0;
                     rouletteWheelRB.motor = motor;
                     //passPlayerTurn is used to apply the change to player vs enemy (true for player)
-                    logicHandler.GetComponent<WheelScript>().handleTurnEnd(wheelValue, passPlayerTurn);
-                    passPlayerTurn = false;
-                    spinningReal = false;
+                    spinnerActivated = false;
+                    logicHandler.GetComponent<WheelScript>().handleTurnEnd(wheelValue, turn);
+                    if (turn == "player") {
+                        turn = "enemy";
+                    } else {
+                        turn = "player";
+                        isPlayerTurn = true;
+                    }
                 }
             }
         }
@@ -59,7 +62,6 @@ public class ButtonScript : MonoBehaviour
 
     public void doPlayerTurn() {
         isPlayerTurn = false;
-        passPlayerTurn = true;
         wheelValue = Random.Range(1, 12);
         generatedRotation = wheelValue* (360 / 12);
         countdownTime = Random.Range(1, 3);
@@ -68,7 +70,11 @@ public class ButtonScript : MonoBehaviour
     }
 
     public void doEnemyTurn() {
-
+        wheelValue = Random.Range(1, 12);
+        generatedRotation = wheelValue* (360 / 12);
+        countdownTime = Random.Range(1, 3);
+        spinRandomTimer = countdownTime;
+        spinnerActivated = true;
     }
 
     public void onClick() {
