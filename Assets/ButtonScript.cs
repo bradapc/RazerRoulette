@@ -21,6 +21,7 @@ public class ButtonScript : MonoBehaviour
     public bool spinnerActivated = false;
     public bool delayFinished = true;
     public bool spunForEnemy = false;
+    public bool spunForPlayer = true;
 
     JointMotor2D motor;
 
@@ -76,12 +77,17 @@ public class ButtonScript : MonoBehaviour
             turn = "player";
         } else if (turn == "player" && !getWheelValueOutcome(wheelValue)) {
             turn = "enemy";
+        } else if (turn == "enemy" && spunForPlayer && getWheelValueOutcome(wheelValue)) {
+            turn = "player";
+        } else if (turn == "enemy" && spunForPlayer && !getWheelValueOutcome(wheelValue)) {
+            turn = "enemy";
         } else if (turn == "enemy" && getWheelValueOutcome(wheelValue)) {
             turn = "enemy";
         } else if (turn == "enemy" && !getWheelValueOutcome(wheelValue)) {
             turn = "player";
         }
         spunForEnemy = false;
+        spunForPlayer = false;
         if (turn == "enemy") {
             delayFinished = false;
             spinRandomTimer = 3;
@@ -89,22 +95,20 @@ public class ButtonScript : MonoBehaviour
     }
 
     public string getOutcomeTarget(int wheelValue) {
-        if (turn == "player" && spunForEnemy && getWheelValueOutcome(wheelValue)) {
+        if (turn == "player" && spunForEnemy) {
             return "enemy";
-        } else if (turn == "player" && spunForEnemy && !getWheelValueOutcome(wheelValue)) {
+        } else if (turn == "player") {
+            return "player";
+        } else if (turn == "enemy" && spunForPlayer) {
+            return "player";
+        } else {
             return "enemy";
-        } else if (turn == "player" && getWheelValueOutcome(wheelValue)) {
-            return "player";
-        } else if (turn == "player" && !getWheelValueOutcome(wheelValue)) {
-            return "player";
         }
-        //add enemy
-        return "enemy";
     }
 
     public void doPlayerTurn() {
         if (turn == "player") {
-            wheelValue = Random.Range(1, 12);
+            wheelValue = Random.Range(1, 13);
             generatedRotation = wheelValue* (360 / 12);
             countdownTime = Random.Range(1, 3);
             spinRandomTimer = countdownTime;
@@ -115,7 +119,16 @@ public class ButtonScript : MonoBehaviour
     public void doEnemyTurn() {
         if (turn == "enemy") {
             if (delayFinished) {
-                wheelValue = Random.Range(1, 12);
+                int enemyChoice = Random.Range(1, 3);
+                Debug.Log(enemyChoice);
+                if (enemyChoice == 1) {
+                    //Do turn for himself
+                    spunForPlayer = false;
+                } else if (enemyChoice == 2) {
+                    //Do turn for player
+                    spunForPlayer = true;
+                }
+                wheelValue = Random.Range(1, 13);
                 generatedRotation = wheelValue* (360 / 12);
                 countdownTime = Random.Range(1, 3);
                 spinRandomTimer = countdownTime;
@@ -126,7 +139,7 @@ public class ButtonScript : MonoBehaviour
 
     public void doEnemyTurnFromPlayer() {
         if (turn == "player") {
-            wheelValue = Random.Range(1, 12);
+            wheelValue = Random.Range(1, 13);
             generatedRotation = wheelValue* (360 / 12);
             countdownTime = Random.Range(1, 3);
             spinRandomTimer = countdownTime;
