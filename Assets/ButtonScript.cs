@@ -3,11 +3,14 @@ using UnityEngine;
 public class ButtonScript : MonoBehaviour
 {
     public GameObject rouletteWheel;
+    public GameObject logicHandler;
     public HingeJoint2D rouletteWheelRB;
     private float timer = 0.0f;
     public int wheelValue = 1;
     public bool spinningRandom = false;
     public bool spinningReal = false;
+    public bool isPlayerTurn = true;
+    public bool passPlayerTurn = true;
 
     //onClick parameters
     public float currentTime = 0;
@@ -39,6 +42,7 @@ public class ButtonScript : MonoBehaviour
                 randomTime = 0;
                 timeToSpin = 0;
                 timer = 0;
+                spinningRandom = false;
                 spinningReal = true;
             }
         }
@@ -49,17 +53,32 @@ public class ButtonScript : MonoBehaviour
             if (currentRotation > generatedRotation - 9 || currentRotation < generatedRotation + 9) {
                 motor.motorSpeed = 0;
                 rouletteWheelRB.motor = motor;
+                //passPlayerTurn is used to apply the change to player vs enemy (true for player)
+                logicHandler.GetComponent<WheelScript>().handleTurnEnd(wheelValue, passPlayerTurn);
+                passPlayerTurn = false;
                 spinningReal = false;
             }
         }
     }
 
-    public void onClick() {
+    public void doPlayerTurn() {
+        isPlayerTurn = false;
+        passPlayerTurn = true;
         wheelValue = Random.Range(1, 20);
         generatedRotation = wheelValue * 18;
         currentTime = timer;
         randomTime = Random.Range(1, 3);
         timeToSpin = currentTime + randomTime;
         spinningRandom = true;
+    }
+
+    public void doEnemyTurn() {
+
+    }
+
+    public void onClick() {
+        if (isPlayerTurn) {
+            doPlayerTurn();
+        }
     }
 }
