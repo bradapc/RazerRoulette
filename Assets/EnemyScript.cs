@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyScript : MonoBehaviour
 {
-
+    public ButtonScript buttonScript;
     private WheelScript wheelScript;
     public int enemyDeaths = 0;
     bool[] appleMap;
@@ -19,7 +20,9 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(enemyDeaths >= 3){
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     public void updateLifeObjects() {
@@ -44,7 +47,7 @@ public class EnemyScript : MonoBehaviour
             failAudioController.GetComponent<AudioSource>().Play(0);
             wheelScript.updateOdds(wheelValue);
         }
-        
+        buttonScript.damageValue = 1;
         updateLifeObjects();
     }
 }

@@ -7,7 +7,7 @@ public class ButtonScript : MonoBehaviour
     public HingeJoint2D rouletteWheelRB;
 
     public int wheelValue = 1;
-    public string turn = "player";
+    public string turn = "null";
 
     //onClick parameters
     public float currentTime = 0;
@@ -26,12 +26,15 @@ public class ButtonScript : MonoBehaviour
     JointMotor2D motor;
 
     public int damageValue = 1;
+    public bool doubleSpin = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rouletteWheelRB = rouletteWheel.GetComponent<HingeJoint2D>();
         motor = rouletteWheelRB.motor;
+        turn = "null";
+        Debug.Log(turn);
     }
 
     // Update is called once per frame
@@ -59,7 +62,12 @@ public class ButtonScript : MonoBehaviour
                     rouletteWheelRB.motor = motor;
                     spinnerActivated = false;
                     logicHandler.GetComponent<WheelScript>().handleTurnEnd(wheelValue, getOutcomeTarget(wheelValue), damageValue);
-                    handleNextTurn(wheelValue);
+                    if(!doubleSpin){
+                        handleNextTurn(wheelValue);
+                    }
+                    else{
+                        doubleSpin = false;
+                    }
                 }
             }
         }
@@ -72,20 +80,24 @@ public class ButtonScript : MonoBehaviour
     public void handleNextTurn(int wheelValue) {
         if (turn == "player" && spunForEnemy && getWheelValueOutcome(wheelValue)) {
             turn = "enemy";
+            
         } else if (turn == "player" && spunForEnemy && !getWheelValueOutcome(wheelValue)) {
             turn = "player";
         } else if (turn == "player" && getWheelValueOutcome(wheelValue)) {
             turn = "player";
         } else if (turn == "player" && !getWheelValueOutcome(wheelValue)) {
             turn = "enemy";
+
         } else if (turn == "enemy" && spunForPlayer && getWheelValueOutcome(wheelValue)) {
-            turn = "player";
+            turn = "null";
+            logicHandler.GetComponent<ItemScript>().selectItem("player");
         } else if (turn == "enemy" && spunForPlayer && !getWheelValueOutcome(wheelValue)) {
             turn = "enemy";
         } else if (turn == "enemy" && getWheelValueOutcome(wheelValue)) {
             turn = "enemy";
         } else if (turn == "enemy" && !getWheelValueOutcome(wheelValue)) {
-            turn = "player";
+            turn = "null";
+            logicHandler.GetComponent<ItemScript>().selectItem("player");
         }
         spunForEnemy = false;
         spunForPlayer = false;
@@ -151,6 +163,7 @@ public class ButtonScript : MonoBehaviour
     
 
     public void onClick() {
+        Debug.Log(turn);
         if (turn == "player") {
             doPlayerTurn();
         }
