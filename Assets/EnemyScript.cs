@@ -32,14 +32,15 @@ public class EnemyScript : MonoBehaviour
         if (appleMap[wheelValue - 1]) {
             Debug.Log("Enemy Lives");
             // appleMap[wheelValue - 1] = !appleMap[wheelValue - 1];
+            wheelScript.updateOdds(wheelValue);
         } else {
             Debug.Log("Enemy loses life");
 
             enemyDeaths += damage;
             // appleMap[wheelValue - 1] = !appleMap[wheelValue - 1];
-
+            wheelScript.updateOdds(wheelValue);
         }
-        wheelScript.updateOdds(wheelValue);
+        
         updateLifeObjects();
     }
 }

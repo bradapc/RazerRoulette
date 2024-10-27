@@ -8,7 +8,7 @@ public class WheelScript : MonoBehaviour
 
     public TextMeshProUGUI safeValueText;
     public TextMeshProUGUI unsafeValueText;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

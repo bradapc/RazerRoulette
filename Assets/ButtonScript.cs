@@ -67,7 +67,7 @@ public class ButtonScript : MonoBehaviour
     }
 
     public bool getWheelValueOutcome(int wheelValue) {
-        return logicHandler.GetComponent<WheelScript>().appleMap[wheelValue - 1];
+        return !(logicHandler.GetComponent<WheelScript>().appleMap[wheelValue - 1]);
     }
 
     public void handleNextTurn(int wheelValue) {
