@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-    public int enemyLives = 3;
+    public int enemyDeaths = 0;
     bool[] appleMap;
-    [SerializeField]private TMPro.TextMeshProUGUI livesText;
+    public GameObject[] lifeObjects = new GameObject[3];
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,13 +17,19 @@ public class EnemyScript : MonoBehaviour
         
     }
 
+    public void updateLifeObjects() {
+        for (int i = 0; i < enemyDeaths; i++) {
+            lifeObjects[i].SetActive(true);
+        }
+    }
+
     public void handleEnemyTurn(int wheelValue) {
         if (appleMap[wheelValue - 1]) {
             Debug.Log("Enemy Lives");
         } else {
             Debug.Log("Enemy loses life");
-            enemyLives--;
-            livesText.text = "Lives: " + enemyLives;
+            enemyDeaths++;
         }
+        updateLifeObjects();
     }
 }
