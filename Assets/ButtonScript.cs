@@ -25,6 +25,8 @@ public class ButtonScript : MonoBehaviour
 
     JointMotor2D motor;
 
+    public int damageValue = 1;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,7 +59,7 @@ public class ButtonScript : MonoBehaviour
                     motor.motorSpeed = 0;
                     rouletteWheelRB.motor = motor;
                     spinnerActivated = false;
-                    logicHandler.GetComponent<WheelScript>().handleTurnEnd(wheelValue, getOutcomeTarget(wheelValue));
+                    logicHandler.GetComponent<WheelScript>().handleTurnEnd(wheelValue, getOutcomeTarget(wheelValue), damageValue);
                     handleNextTurn(wheelValue);
                 }
             }

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemyspinner_0: -7905922538966286919
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

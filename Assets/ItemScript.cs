@@ -4,6 +4,8 @@ public class ItemScript : MonoBehaviour
 {
 
     bool[] appleMap;
+
+
     int[] playerItemArr = new int[4];
     int[] enemyItemArr = new int[4];
 
@@ -54,15 +56,24 @@ public class ItemScript : MonoBehaviour
         switch (playerItemArr[slot]){
             case 1:
                 Debug.Log("Use: Change your odds!");
+                for(int i = 0; i< appleMap.Length; i++)
+                {
+                    if (!appleMap[i])
+                    {
+                        appleMap[i] = true
+                    }
+                }
                 break;
             case 2:
                 Debug.Log("Use: Spin Twice!");
                 break;
             case 3:
                 Debug.Log("Use: Double Damage");
+
                 break;
             case 4:
                 Debug.Log("Use: Health UP!");
+
                 break;
         }
     }

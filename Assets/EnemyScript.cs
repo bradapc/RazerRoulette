@@ -17,6 +17,7 @@ public class EnemyScript : MonoBehaviour
         
     }
 
+<<<<<<< Updated upstream
     public void updateLifeObjects() {
         for (int i = 0; i < enemyDeaths; i++) {
             lifeObjects[i].SetActive(true);
@@ -24,11 +25,19 @@ public class EnemyScript : MonoBehaviour
     }
 
     public void handleEnemyTurn(int wheelValue) {
+=======
+    public void handleEnemyTurn(int wheelValue ,int damage) {
+>>>>>>> Stashed changes
         if (appleMap[wheelValue - 1]) {
             Debug.Log("Enemy Lives");
         } else {
             Debug.Log("Enemy loses life");
+<<<<<<< Updated upstream
             enemyDeaths++;
+=======
+            enemyLives -= damage;
+            livesText.text = "Lives: " + enemyLives;
+>>>>>>> Stashed changes
         }
         updateLifeObjects();
     }

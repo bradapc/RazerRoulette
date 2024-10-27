@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      dealerbutton_0: -8573840097330260344
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
