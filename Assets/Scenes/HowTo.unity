@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -286}
+  m_AnchoredPosition: {x: 0, y: -331.3}
   m_SizeDelta: {x: 280.1123, y: 80.3456}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &360071460
@@ -469,7 +469,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 210}
+  m_AnchoredPosition: {x: 0, y: 243.6}
   m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &984734821
@@ -492,7 +492,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Welcome To Razer Roulette
+  m_text: Welcome To Razor Roulette
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -875,7 +875,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 95}
+  m_AnchoredPosition: {x: 0, y: 128.6}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1897103750
@@ -1011,7 +1011,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32.805897, y: -206}
+  m_AnchoredPosition: {x: -32.805897, y: -170.5}
   m_SizeDelta: {x: 1060.7208, y: 386.9063}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1963540370
@@ -1036,14 +1036,18 @@ MonoBehaviour:
       m_Calls: []
   m_text: "On Halloween night you have been brought into an unfortuante game with
     a creature of the night.\nYou have been placed in a room with a roulette will
-    full of apples and a table with two buttons.\nYou are compelled to press one
-    of these two buttons. Both spin buttons will will spin the roullet wheel.\n\n
-    \"Your Spin\" \nHitting this button will compel you to eat the apple the roulette
-    wheel slelected. If the apple doesn't contain a razer you get to go again.\n\n\"Dealer
-    Spin\": \nHitting this button will compel the monster to eat the apple the roulette
-    wheel slelected. If the apple does contain a razer you get to go again.\n\nAll
-    apples eaten will be replace with razor laced apples and all razers will be replaced
-    with regular apples."
+    full of apples and a table with two buttons. You can also see the monster also
+    has the same two buttons.\nYou are compelled to press one of these two buttons.
+    Both spin buttons will spin the roulette wheel. \nClicking those button make
+    you want to eat the selected apple but is that a glint of a razor in some of
+    thopse apples? You don't think you could eat more than three razors.\nCan you
+    beat the monster at his own game?\n\n \"Your Spin\" \nHitting this button will
+    compel the person who pressed it to eat the apple the roulette wheel slelected.
+    If the apple doesn't contain a razor you get to go again.\n\n\"Dealer Spin\":
+    \nHitting this button will compel the other person to eat the apple the roulette
+    wheel slelected. If the apple does contain a razor you get to go again.\n\nAll
+    apples eaten will be replaced with razor laced apples and all razors will be
+    replaced with regular apples."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

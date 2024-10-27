@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using System.Collections;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PlayerScript : MonoBehaviour
     public GameObject panel;
     private Image panelImage;
 
+    public Animator monsterAnimator;
+
     bool[] appleMap;
     public int playerDeaths = 0;
     public GameObject[] lifeObjects = new GameObject[3];
@@ -22,6 +25,8 @@ public class PlayerScript : MonoBehaviour
 
     public float countdownTime = 1f;
     float countdownTimeSecond = 3f;
+
+    float countdownTimeThree = 1.5f;
     bool timeStart = false;
     float vigValue = 0;
     Color panelColor = new Color(1f, 1f, 0f, 0.0f);
@@ -47,13 +52,19 @@ public class PlayerScript : MonoBehaviour
     {
         if (playerDeaths >= 3)
         {
-            panel.SetActive(true);
-            countdownTimeSecond -= Time.deltaTime;
-            vigValue += Time.deltaTime;
-            panelImage.color = new Color(1f,1f,1f,vigValue);
-            if(countdownTimeSecond <= 0){
-                SceneManager.LoadScene("MainMenu");
+            monsterAnimator.Play("GameOverAnimation");
+            countdownTimeThree -= Time.deltaTime;
+            if (countdownTimeThree <= 0)
+            {
+                panel.SetActive(true);
+                countdownTimeSecond -= Time.deltaTime;
+                vigValue += Time.deltaTime;
+                panelImage.color = new Color(1f,1f,1f,vigValue);
+                if(countdownTimeSecond <= 0){
+                    SceneManager.LoadScene("MainMenu");
+                }
             }
+
         }
         else if (timeStart)
         {
