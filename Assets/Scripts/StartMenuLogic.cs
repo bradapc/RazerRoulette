@@ -9,7 +9,7 @@ public class StartMenuLogic : MonoBehaviour
     public void sceneChange()
     {
         Debug.Log("Button Click");
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("HowTo");
     }
 
     public void quitGame()
