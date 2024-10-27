@@ -4098,6 +4098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speakingText: {fileID: 1671484816}
+  monsterAnimator: {fileID: 1990879914}
 --- !u!1 &1850151747
 GameObject:
   m_ObjectHideFlags: 0
@@ -4597,6 +4598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1990879912}
   - component: {fileID: 1990879913}
+  - component: {fileID: 1990879914}
   m_Layer: 0
   m_Name: LitFace
   m_TagString: Untagged
@@ -4663,7 +4665,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7209685391880172861, guid: 8745d5ecf362e09438c90ee8f42e05ac, type: 3}
+  m_Sprite: {fileID: -4497977479335331990, guid: 2f266aed2db6b29489a0a0c759745627, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4674,6 +4676,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1990879914
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990879911}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1b4eb85d772bce64d9cd822b1008c356, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2026773184
 GameObject:
   m_ObjectHideFlags: 0

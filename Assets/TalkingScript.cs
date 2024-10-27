@@ -8,6 +8,8 @@ public class TalkingScript : MonoBehaviour
 
     public TextMeshProUGUI speakingText;
 
+    public Animator monsterAnimator;
+
     float countdownTime = 3f;
     float countdownTimeTwo = 0.5f;
     bool timeStart = false;
@@ -28,6 +30,7 @@ public class TalkingScript : MonoBehaviour
             countdownTime -= Time.deltaTime;
             if(countdownTime <= 0){
                 speakingText.gameObject.SetActive(false);
+                monsterAnimator.SetBool("isTalking", false);
                 StartCoroutine(fadeOutText());
                 countdownTimeTwo -= Time.deltaTime;
                 if(countdownTimeTwo <= 0){
@@ -59,6 +62,7 @@ public class TalkingScript : MonoBehaviour
         }
     }
     public void showText(){
+        monsterAnimator.SetBool("isTalking", true);
         timeStart = true;
     }
 
