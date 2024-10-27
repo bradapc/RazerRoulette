@@ -35,13 +35,15 @@ public class PlayerScript : MonoBehaviour
         if (appleMap[wheelValue - 1]) {
             Debug.Log("Player lives");
             // appleMap[wheelValue - 1] = !appleMap[wheelValue - 1];
+            wheelScript.updateOdds(wheelValue);
         } else {
             Debug.Log("Player loses life");
             playerDeaths += damage;
             // appleMap[wheelValue - 1] = !appleMap[wheelValue - 1];
+            wheelScript.updateOdds(wheelValue);
 
         }
-        wheelScript.updateOdds(wheelValue);
+        // wheelScript.updateOdds(wheelValue);
         updateLifeObjects();
     }
 }
