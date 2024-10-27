@@ -7,6 +7,8 @@ public class EnemyScript : MonoBehaviour
     public int enemyDeaths = 0;
     bool[] appleMap;
     public GameObject[] lifeObjects = new GameObject[3];
+    public GameObject audioSuccessController;
+    public GameObject failAudioController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,12 +34,14 @@ public class EnemyScript : MonoBehaviour
         if (appleMap[wheelValue - 1]) {
             Debug.Log("Enemy Lives");
             // appleMap[wheelValue - 1] = !appleMap[wheelValue - 1];
+            audioSuccessController.GetComponent<AudioSource>().Play(0);
             wheelScript.updateOdds(wheelValue);
         } else {
             Debug.Log("Enemy loses life");
 
             enemyDeaths += damage;
             // appleMap[wheelValue - 1] = !appleMap[wheelValue - 1];
+            failAudioController.GetComponent<AudioSource>().Play(0);
             wheelScript.updateOdds(wheelValue);
         }
         
