@@ -31,8 +31,7 @@ public class EnemyScript : MonoBehaviour
         } else {
             Debug.Log("Enemy loses life");
 
-            enemyLives -= damage;
-            livesText.text = "Lives: " + enemyLives;
+            enemyDeaths += damage;
 
         }
         updateLifeObjects();

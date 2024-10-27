@@ -33,8 +33,7 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("Player lives");
         } else {
             Debug.Log("Player loses life");
-            playerLives -= damage;
-            livesText.text = "Lives: " + playerLives;
+            playerDeaths += damage;
 
         }
         updateLifeObjects();
