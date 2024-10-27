@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -10,18 +13,31 @@ public class EnemyScript : MonoBehaviour
     public GameObject[] lifeObjects = new GameObject[3];
     public GameObject audioSuccessController;
     public GameObject failAudioController;
+
+    public GameObject panel;
+    float countdownTimeSecond = 3f;
+    float vigValue = 0;
+    private Image panelImage;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         wheelScript = GetComponent<WheelScript>();
         appleMap = gameObject.GetComponent<WheelScript>().appleMap;   
+        panelImage = panel.GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if(enemyDeaths >= 3){
-            SceneManager.LoadScene("MainMenu");
+            panel.SetActive(true);
+            countdownTimeSecond -= Time.deltaTime;
+            vigValue += Time.deltaTime;
+            panelImage.color = new Color(1f,1f,1f,vigValue);
+            if(countdownTimeSecond <= 0){
+                SceneManager.LoadScene("SampleScene");
+            }
         }
     }
 

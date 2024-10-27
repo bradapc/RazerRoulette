@@ -66,7 +66,7 @@ public class TalkingScript : MonoBehaviour
         timeStart = true;
     }
 
-    public void changeText(){
+    public void changeText(string newText){
 
     }
 }
