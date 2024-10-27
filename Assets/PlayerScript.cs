@@ -8,7 +8,8 @@ public class PlayerScript : MonoBehaviour
     bool[] appleMap;
     public int playerDeaths = 0;
     public GameObject[] lifeObjects = new GameObject[3];
-
+    public GameObject audioSuccessController;
+    public GameObject failAudioController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,10 +37,12 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("Player lives");
             // appleMap[wheelValue - 1] = !appleMap[wheelValue - 1];
             wheelScript.updateOdds(wheelValue);
+            audioSuccessController.GetComponent<AudioSource>().Play(0);
         } else {
             Debug.Log("Player loses life");
             playerDeaths += damage;
             // appleMap[wheelValue - 1] = !appleMap[wheelValue - 1];
+            failAudioController.GetComponent<AudioSource>().Play();
             wheelScript.updateOdds(wheelValue);
 
         }
