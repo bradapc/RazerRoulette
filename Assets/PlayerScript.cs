@@ -26,7 +26,7 @@ public class PlayerScript : MonoBehaviour
     public float countdownTime = 1f;
     float countdownTimeSecond = 3f;
 
-    float countdownTimeThree = 1.5f;
+    float countdownTimeThree = 1.3f;
     bool timeStart = false;
     float vigValue = 0;
     Color panelColor = new Color(1f, 1f, 0f, 0.0f);
