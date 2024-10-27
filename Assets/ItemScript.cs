@@ -99,24 +99,26 @@ public class ItemScript : MonoBehaviour
         Debug.Log(slot);
         Debug.Log(itemArr[slot-1]);
         switch (itemArr[slot-1]){
-            case 1:
-                for(int i = 0; i< appleMap.Length; i++)
+            case 1://  work
+                bool breakBool = true;
+                for(int i = 0; i< appleMap.Length && breakBool; i++)
                 {
-                    if (!appleMap[i])
+                    if (appleMap[i])
                     {
                         appleMap[i] = true;
                         wheelScript.updateOdds(i+1);
+                        breakBool = false;
                     }
                 }
                 break;
-            case 2:
+            case 2: //work
                 buttonScript.damageValue = 2;
                 break;
-            case 3:
+            case 3: //work
                 playerScript.updateLifeHeal();
 
                 break;
-            case 4:
+            case 4: //works
                 buttonScript.doubleSpin = true;
 
                 break;

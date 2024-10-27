@@ -29,8 +29,8 @@ public class PlayerScript : MonoBehaviour
     }
 
     public void updateLifeHeal() {
-        if(playerDeaths>=0){
-            lifeObjects[playerDeaths].SetActive(false);
+        if(playerDeaths>0){
+            lifeObjects[playerDeaths-1].SetActive(false);
             playerDeaths--;
         }
     }
