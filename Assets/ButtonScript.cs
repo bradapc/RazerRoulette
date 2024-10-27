@@ -5,7 +5,7 @@ public class ButtonScript : MonoBehaviour
     public GameObject rouletteWheel;
     public GameObject logicHandler;
     public HingeJoint2D rouletteWheelRB;
-    private float timer = 0.0f;
+
     public int wheelValue = 1;
     public string turn = "player";
 

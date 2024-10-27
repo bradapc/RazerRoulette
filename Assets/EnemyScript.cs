@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+
+    private WheelScript wheelScript;
     public int enemyDeaths = 0;
     bool[] appleMap;
     public GameObject[] lifeObjects = new GameObject[3];
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        wheelScript = GetComponent<WheelScript>();
         appleMap = gameObject.GetComponent<WheelScript>().appleMap;   
     }
 
@@ -28,12 +31,15 @@ public class EnemyScript : MonoBehaviour
 
         if (appleMap[wheelValue - 1]) {
             Debug.Log("Enemy Lives");
+            // appleMap[wheelValue - 1] = !appleMap[wheelValue - 1];
         } else {
             Debug.Log("Enemy loses life");
 
             enemyDeaths += damage;
+            // appleMap[wheelValue - 1] = !appleMap[wheelValue - 1];
 
         }
+        wheelScript.updateOdds(wheelValue);
         updateLifeObjects();
     }
 }
