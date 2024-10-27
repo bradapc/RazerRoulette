@@ -60,7 +60,7 @@ public class ItemScript : MonoBehaviour
                 {
                     if (!appleMap[i])
                     {
-                        appleMap[i] = true
+                        appleMap[i] = true;
                     }
                 }
                 break;
