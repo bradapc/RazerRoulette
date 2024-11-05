@@ -25,7 +25,7 @@ public class TalkingScript : MonoBehaviour
     {
         if (timeStart)
         {   
-
+            
             StartCoroutine(fadeInText());
             countdownTime -= Time.deltaTime;
             if(countdownTime <= 0){
@@ -64,9 +64,11 @@ public class TalkingScript : MonoBehaviour
     public void showText(){
         monsterAnimator.SetBool("isTalking", true);
         timeStart = true;
+        speakingText.gameObject.SetActive(true);
     }
 
     public void changeText(string newText){
-
+        speakingText.text = newText;
+        showText();
     }
 }

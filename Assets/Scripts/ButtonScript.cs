@@ -6,6 +6,8 @@ public class ButtonScript : MonoBehaviour
     public GameObject logicHandler;
     public HingeJoint2D rouletteWheelRB;
 
+    private TalkingScript talkScript;
+
     public int wheelValue = 1;
     public string turn = "null";
 
@@ -34,7 +36,8 @@ public class ButtonScript : MonoBehaviour
         rouletteWheelRB = rouletteWheel.GetComponent<HingeJoint2D>();
         motor = rouletteWheelRB.motor;
         turn = "null";
-        Debug.Log(turn);
+        
+        talkScript = logicHandler.GetComponent<TalkingScript>();
     }
 
     // Update is called once per frame
@@ -93,15 +96,20 @@ public class ButtonScript : MonoBehaviour
             logicHandler.GetComponent<ItemScript>().selectItem("player");
         } else if (turn == "enemy" && spunForPlayer && !getWheelValueOutcome(wheelValue)) {
             turn = "enemy";
+            
         } else if (turn == "enemy" && getWheelValueOutcome(wheelValue)) {
             turn = "enemy";
+        
         } else if (turn == "enemy" && !getWheelValueOutcome(wheelValue)) {
             turn = "null";
             logicHandler.GetComponent<ItemScript>().selectItem("player");
         }
         spunForEnemy = false;
         spunForPlayer = false;
+        Debug.Log(" before turn swap");
+        Debug.Log(turn);
         if (turn == "enemy") {
+            Debug.Log("turn swap");
             delayFinished = false;
             spinRandomTimer = 3;
         }
@@ -109,12 +117,16 @@ public class ButtonScript : MonoBehaviour
 
     public string getOutcomeTarget(int wheelValue) {
         if (turn == "player" && spunForEnemy) {
+            
             return "enemy";
         } else if (turn == "player") {
+            
             return "player";
         } else if (turn == "enemy" && spunForPlayer) {
+            
             return "player";
         } else {
+            
             return "enemy";
         }
     }
@@ -132,13 +144,15 @@ public class ButtonScript : MonoBehaviour
     public void doEnemyTurn() {
         if (turn == "enemy") {
             if (delayFinished) {
-                int enemyChoice = Random.Range(1, 3);
+                int enemyChoice = Random.Range(1, 4);
                 Debug.Log(enemyChoice);
                 if (enemyChoice == 1) {
                     //Do turn for himself
+                    talkScript.changeText("I shall worsen the odds!");
                     spunForPlayer = false;
-                } else if (enemyChoice == 2) {
+                } else if (enemyChoice == 2 || enemyChoice == 3 ) {
                     //Do turn for player
+                    talkScript.changeText("This is for you!");
                     spunForPlayer = true;
                 }
                 wheelValue = Random.Range(1, 13);
@@ -166,12 +180,17 @@ public class ButtonScript : MonoBehaviour
         Debug.Log(turn);
         if (turn == "player") {
             doPlayerTurn();
+            talkScript.changeText("You think luck will be on your side?");
         }
+
     }
 
     public void onClickEnemyHit() {
         if (turn == "player") {
+            talkScript.changeText("For me... You shouldn't have!");
+            
             doEnemyTurnFromPlayer();
         }
+
     }
 }

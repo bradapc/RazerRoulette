@@ -7,6 +7,7 @@ public class ItemScript : MonoBehaviour
 
     private PlayerScript playerScript;
     private WheelScript wheelScript;
+    private TalkingScript talkScript;
     public ButtonScript buttonScript;
     bool[] appleMap;
 
@@ -39,6 +40,7 @@ public class ItemScript : MonoBehaviour
         whosNext = "player";
         playerScript = GetComponent<PlayerScript>();
         wheelScript = GetComponent<WheelScript>();
+        talkScript = GetComponent<TalkingScript>();
 
     }
 
@@ -98,6 +100,7 @@ public class ItemScript : MonoBehaviour
         itemSwitchVis();
         Debug.Log(slot);
         Debug.Log(itemArr[slot-1]);
+        talkScript.changeText("That will not help you");
         switch (itemArr[slot-1]){
             case 1://  work
                 bool breakBool = true;
